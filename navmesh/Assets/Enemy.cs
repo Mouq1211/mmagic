@@ -15,7 +15,11 @@ public class Enemy : MonoBehaviour
     Transform Player;
     public float viewRadius;
     public float attackRadius;
-
+    public Sprite SkinIdle;
+    public Sprite SkinAttack;
+    public SpriteRenderer SkinPlayer;
+    float Temporizador = 0;
+    public Collider2D BoxdeDano;
 
 
     public State currentState = State.Idle;
@@ -30,6 +34,19 @@ public class Enemy : MonoBehaviour
         p2 = initialPosition + new Vector3( Random.Range( 0f, radius ), Random.Range( 0f, radius ), 0f );
 
         currentTarget = p1;
+        BoxdeDano.enabled = false;
+    }
+
+    private void Update()
+    {
+        Temporizador += Time.deltaTime ;
+        
+        if (Temporizador >= 6)
+        {
+            Temporizador = 0;
+        }
+        
+    
     }
 
 
@@ -72,15 +89,24 @@ public class Enemy : MonoBehaviour
         {
             currentTarget = Player.position;
 
-            if ( Vector3.Distance( transform.position, Player.position ) > attackRadius )
+            if (Vector3.Distance(transform.position, Player.position) > attackRadius)
             {
-                transform.position = Vector2.MoveTowards( transform.position, currentTarget, speed * Time.deltaTime );
+                transform.position = Vector2.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
             }
+            else if (Vector3.Distance(transform.position, Player.position) <= 2)
+            {
+                if (Temporizador > 2 && Temporizador < 4)
+                {
+                    SkinPlayer.sprite = SkinAttack;
+                    BoxdeDano.enabled = true;
 
-
-
-
-
+                }
+                else
+                {
+                    SkinPlayer.sprite = SkinIdle;
+                    BoxdeDano.enabled = false;
+                }
+            }
         }
     }
 
@@ -96,4 +122,18 @@ public class Enemy : MonoBehaviour
         Idle,
         Chasing
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            print("encontrei o player");
+            collision.gameObject.GetComponent<HealthComponent>().TakeDamage(1);
+        }
+    }
+
+
+
+
+
+
 }
