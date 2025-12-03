@@ -20,6 +20,7 @@ public class HealthComponent : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        print("Causando dano");
         if(currentHealth - damage > 0)
         {
             currentHealth -= damage;
