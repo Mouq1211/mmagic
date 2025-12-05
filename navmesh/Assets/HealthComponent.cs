@@ -16,19 +16,20 @@ public class HealthComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage( float damage )
     {
-        print("Causando dano");
-        if(currentHealth - damage > 0)
+        print( "Causando dano" );
+        if ( currentHealth - damage > 0 )
         {
             currentHealth -= damage;
         }
         else
         {
             currentHealth = 0;
-            print($"Eu, {gameObject.name}, morri");
+            print( $"Eu, {gameObject.name}, morri" );
+            Destroy( gameObject );
 
         }
 
