@@ -24,10 +24,13 @@ public class Enemy : MonoBehaviour
 
     public State currentState = State.Idle;
 
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag( "Player" ).transform;
+        animator = GetComponent<Animator>();
 
         initialPosition = transform.position;
         p1 = initialPosition + new Vector3( Random.Range( 0f, radius ), Random.Range( 0f, radius ), 0f );
@@ -97,13 +100,13 @@ public class Enemy : MonoBehaviour
             {
                 if (Temporizador > 2 && Temporizador < 4)
                 {
-                    SkinPlayer.sprite = SkinAttack;
+                    //SkinPlayer.sprite = SkinAttack;
+                    animator.SetTrigger("Attacking");
                     BoxdeDano.enabled = true;
-
                 }
                 else
                 {
-                    SkinPlayer.sprite = SkinIdle;
+                    
                     BoxdeDano.enabled = false;
                 }
             }
@@ -124,10 +127,9 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("PlayerAttack"))
         {
-            print("encontrei o player");
-            collision.gameObject.GetComponent<HealthComponent>().TakeDamage(1);
+            gameObject.GetComponent<HealthComponent>().TakeDamage(1);
         }
     }
 

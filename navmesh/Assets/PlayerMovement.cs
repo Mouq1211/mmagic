@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.GetComponent<HealthComponent>().TakeDamage(1); 
+            GetComponent<HealthComponent>().TakeDamage(1); 
         }
     }
 
