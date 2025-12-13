@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 105497245}
   - component: {fileID: 105497246}
+  - component: {fileID: 105497247}
   m_Layer: 0
   m_Name: Collider_Damage
   m_TagString: PlayerAttack
@@ -265,6 +266,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.5026326, y: 2.6641216}
   m_EdgeRadius: 0
+--- !u!114 &105497247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105497244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e541e1d43d1d96440a210936cf2b2372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &181921777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901469139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.27, y: -0.83, z: 0}
+  m_LocalPosition: {x: 0.22, y: 7.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1235,7 +1248,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 4}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1279,6 +1292,7 @@ MonoBehaviour:
   maxHealth: 3
   CurrentHealth: 3
   gc: {fileID: 515771921}
+  isPlayer: 1
 --- !u!1 &945629450
 GameObject:
   m_ObjectHideFlags: 0

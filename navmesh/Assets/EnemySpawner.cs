@@ -13,8 +13,8 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        print(timer);
-        if (timer >= 5) 
+        //print(timer);
+        if (timer >= 1) 
         {
             timer = 0;
             spawn_enemy();

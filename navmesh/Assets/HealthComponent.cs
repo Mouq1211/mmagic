@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -10,23 +11,24 @@ public class HealthComponent : MonoBehaviour
 
     private int qtd_inimigos_mortos;
 
+    public bool isPlayer;
 
     void Start()
     {
         CurrentHealth = maxHealth;
         gc = GameObject.Find("GameController").GetComponent<GameController>();
         
-        if(gameObject.name == "Player")
-        {
-            gc.setVida(CurrentHealth);
-        }
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isPlayer)
+        {
+            gc.setVida(CurrentHealth);
+        }
     }
     public void TakeDamage( float damage )
     {
@@ -48,6 +50,11 @@ public class HealthComponent : MonoBehaviour
             CurrentHealth = 0;
             print( $"Eu, {gameObject.name}, morri" );
             gameObject.SetActive( false );
+            if (isPlayer)
+            {
+                SceneManager.LoadScene(0);
+            }
+
 
         }
 

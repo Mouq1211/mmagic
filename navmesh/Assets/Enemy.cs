@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
             }
 
 
-            if ( Vector3.Distance( transform.position, Player.position ) < viewRadius )
+            if ( Vector3.Distance( transform.position, Player.position ) < viewRadius && Player != null)
             {
                 OnChasingEnter();
             }
@@ -125,13 +125,7 @@ public class Enemy : MonoBehaviour
         Idle,
         Chasing
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("PlayerAttack"))
-        {
-            gameObject.GetComponent<HealthComponent>().TakeDamage(1);
-        }
-    }
+   
 
 
 
