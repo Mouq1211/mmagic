@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
         {
             timer = 0;
             spawn_enemy();
+
         }
     }
 
