@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         speedY = Input.GetAxis("Vertical") * moveSpeed;
         rb.velocity = new Vector3(speedX, speedY);
         Punch();
+
     }
     void Punch()
     {

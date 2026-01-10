@@ -42,12 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Temporizador += Time.deltaTime ;
         
-        if (Temporizador >= 6)
-        {
-            Temporizador = 0;
-        }
         
     
     }
@@ -98,17 +93,26 @@ public class Enemy : MonoBehaviour
             }
             else if (Vector3.Distance(transform.position, Player.position) <= 2)
             {
-                if (Temporizador > 2 && Temporizador < 4)
-                {
-                    //SkinPlayer.sprite = SkinAttack;
-                    animator.SetTrigger("Attacking");
-                    BoxdeDano.enabled = true;
-                }
-                else
-                {
-                    
-                    BoxdeDano.enabled = false;
-                }
+                OnAttackingEnter();
+            }
+        }
+
+        if (currentState == State.Attacking)
+        {
+            Temporizador += Time.deltaTime;
+
+            if ( Temporizador > 0.9f)
+            {
+                OnAttackingExit();
+            }
+        }
+
+        if (currentState == State.Death) 
+        {
+            Temporizador += Time.deltaTime;
+            if (Temporizador > 1.25f)
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -117,13 +121,39 @@ public class Enemy : MonoBehaviour
     {
         currentState = State.Chasing;
         print( "mudei para o estado chasing" );
+
+        Temporizador = 0f;
     }
 
+    void OnAttackingEnter()
+    {
+        currentState = State.Attacking;
+        animator.SetBool("Attacking", true);
+        BoxdeDano.enabled = true;
+    }
+
+    void OnAttackingExit()
+    {
+        currentState = State.Idle;
+        animator.SetBool("Attacking", false);
+        BoxdeDano.enabled = false;
+
+    }
+
+    public void OnDeath()
+    {
+        currentState = State.Death;
+        animator.SetTrigger("dead");
+        BoxdeDano.enabled = false;
+        Temporizador = 0;
+    }
 
     public enum State
     {
         Idle,
-        Chasing
+        Chasing,
+        Attacking,
+        Death
     }
    
 

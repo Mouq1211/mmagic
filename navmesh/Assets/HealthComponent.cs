@@ -49,10 +49,16 @@ public class HealthComponent : MonoBehaviour
             }
             CurrentHealth = 0;
             print( $"Eu, {gameObject.name}, morri" );
-            gameObject.SetActive( false );
+
             if (isPlayer)
             {
-                SceneManager.LoadScene(0);
+                gameObject.SetActive(false);
+                SceneManager.LoadScene("game");
+            }
+            else 
+            {
+                Enemy enemy = gameObject.GetComponent<Enemy>();
+                enemy.OnDeath();
             }
 
 

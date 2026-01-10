@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: fcbe6478a8e1c364aad918eb61040055
+  - enabled: 1
     path: Assets/Scenes/game.unity
     guid: 0438b72e80795dd45996a17a17b2df5f
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/teladevitoria.unity
+    guid: 3be3b34d28f2d9246a3e3db9a4fe22f1
   m_configObjects: {}

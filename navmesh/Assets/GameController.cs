@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -18,5 +19,13 @@ public class GameController : MonoBehaviour
     {
         qtd_inimigos += 1;
         _Kills.text = qtd_inimigos.ToString();
+    }
+
+    private void Update()
+    {
+        if(qtd_inimigos >= 15)
+        {
+            SceneManager.LoadScene("teladevitoria");
+        }
     }
 }
